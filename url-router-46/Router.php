@@ -16,6 +16,9 @@ class Router {
     }
     // 2. prepare for common pattern
     static function get($pattern, $callback) {
+        if($_SERVER['REQUEST_METHOD'] != 'GET') {
+            return;
+        }
         $pattern = "~^{$pattern}/?$~";
         $params = self::getMatches($pattern);
         // if param exists then only call callback
@@ -27,6 +30,9 @@ class Router {
                 $callback(...$functionArguments);
             }
         }
+    }
+    static function post() {
+        
     }
     // if nomatch true then only show this message
     static function cleanup() {
