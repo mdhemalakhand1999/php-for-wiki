@@ -1,0 +1,6 @@
+ReWriteEngine on
+
+ReWriteCond ${SCRIPT_FILENAME} !-f <!-- if its not file -->
+ReWriteCond ${SCRIPT_FILENAME} !-d <!-- if its not directory -->
+ReWriteCond ${SCRIPT_FILENAME} !-l <!-- if its not symbolic link -->
+ReWriteRule ^(.*)$ index.php/$1
