@@ -8,3 +8,5 @@ Router::get('/', function() {
 Router::get('/hello/world', function() {
     echo "Hello world";
 });
+
+Router::cleanup();
