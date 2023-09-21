@@ -14,9 +14,14 @@ class Router {
         if($params) {
             // if params exists then $nomatch will be false
             self::$nomatch = false;
+            $functionArguments = array_slice($params, 1); // get all without first param
             if(is_callable($callback)) {
-                $functionArguments = array_slice($params, 1); // get all without first param
-                $callback(...$functionArguments);
+                    $callback(...$functionArguments);
+            } else {
+                $className = $callback[0];
+                $methodName = $callback[1];
+                $instance = $className::getInstance();
+                $instance->$methodName(...$functionArguments);
             }
         }
     }
