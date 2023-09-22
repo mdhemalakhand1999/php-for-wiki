@@ -1,7 +1,6 @@
 <?php
 namespace Shop\Model;
 use Doctrine\ORM\Mapping as ORM;
-
 #[ORM\Entity]
 #[ORM\Table(name: 'user')]
 class User
@@ -13,5 +12,10 @@ class User
     #[ORM\Column(type: 'string')]
     private string $name;
 
-    // .. (other code)
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: 'user')]
+    protected $products;
+
+    public function getProducts() {
+        return $this->products;
+    }
 }
